@@ -505,7 +505,7 @@ def catch_up(wallet, positions):
     name = copy_map().get(wallet)
     if not name or cfg()["mode"] == "off":
         return
-    have = {t["asset"] for t in tickets()}
+    have = {t["asset"] for t in tickets() if not (t["status"] == "skip" and "you copy from" in (t.get("why") or ""))}
     for asset, n in positions.items():
         if asset in have or n["cost"] < min_for(name) or not n["size"]:
             continue
