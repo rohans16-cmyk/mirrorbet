@@ -11,7 +11,7 @@ settles. Alongside the real-money bot it runs paper-money simulations so strateg
 
 ## 2. Architecture
 
-- **Backend:** Python 3.10+, standard library HTTP server (`server.py`) on http://localhost:8100, bound to
+- **Backend:** Python 3.10+, standard library HTTP server (`server.py`) on http://polyshadow.localhost:8100, bound to
   127.0.0.1 only (nothing is exposed to the internet). Only two dependencies: `cryptography` (request signing)
   and `certifi` (TLS certificates).
 - **Frontend:** a React + TypeScript single-page app (Vite, Tailwind, Radix UI), prebuilt into `web/dist` and

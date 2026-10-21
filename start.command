@@ -6,5 +6,5 @@ if [ ! -d .venv ]; then
   echo "First run: setting up (one time)..."
   python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt || { echo "Setup failed."; read -r; exit 1; }
 fi
-(sleep 2; open "http://localhost:8100" 2>/dev/null || xdg-open "http://localhost:8100" 2>/dev/null) &
+(sleep 2; open "http://polyshadow.localhost:8100" 2>/dev/null || xdg-open "http://polyshadow.localhost:8100" 2>/dev/null) &
 exec .venv/bin/python server.py

@@ -1,6 +1,6 @@
 """PolyShadow: copy the Polymarket traders you follow, on paper and with real money on Polymarket US.
 
-    python3 server.py        then open http://localhost:8100
+    python3 server.py        then open http://polyshadow.localhost:8100
 
 GET  /api/polymarket/profiles   the people you follow, their bets and the trader feed
 GET  /api/polymarket/record     one person's Record tab (?wallet=)
@@ -180,7 +180,7 @@ def main():
     polyprofiles.start()  # the people you follow: a live alert when one bets
     copysim.start()  # paper sims: settle every 10 minutes
     polyus.start()  # the real-money bot: settles, expires unplaced tickets, auto-sells
-    print(f"PolyShadow is running: http://localhost:{config.PORT}  (Ctrl+C to stop)")
+    print(f"PolyShadow is running: http://polyshadow.localhost:{config.PORT}  (Ctrl+C to stop)")
     server = ThreadingHTTPServer(("127.0.0.1", config.PORT), Handler)
     server.daemon_threads = True
     server.serve_forever()

@@ -62,7 +62,7 @@ export function useBot() {
 }
 export type Bot = ReturnType<typeof useBot>
 
-const KEY = 'polybot.intro'
+const KEY = 'polyshadow.intro'
 const remembered = () => {
   try {
     return localStorage.getItem(KEY)

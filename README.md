@@ -54,7 +54,7 @@ and why.
 ## Project layout
 
 ```
-server.py         HTTP server and API routes (http://localhost:8100)
+server.py         HTTP server and API routes (http://polyshadow.localhost:8100)
 polyprofiles.py   following traders: detection, records, Best Bets, Take now, US event matching
 polyus.py         real-money bot: market matching, copy rules, sizing, orders, exits, settlement, P/L
 copysim.py        paper-money copy simulations and backtests
@@ -78,7 +78,14 @@ python3 -m venv .venv
 .venv/bin/python server.py
 ```
 
-Then open http://localhost:8100. On a Mac you can instead double-click `start.command` (Windows: `start.bat`).
+Then open http://polyshadow.localhost:8100 (http://localhost:8100 works too). On a Mac you can instead double-click
+`start.command` (Windows: `start.bat`).
+
+Chrome, Edge and Firefox open `polyshadow.localhost` on their own. Safari needs it added to `/etc/hosts` once:
+
+```bash
+echo "127.0.0.1 polyshadow.localhost" | sudo tee -a /etc/hosts
+```
 
 A fresh clone starts with no followed traders and no history: add traders on the **People** tab. The `data/` folder
 is created on first run.
