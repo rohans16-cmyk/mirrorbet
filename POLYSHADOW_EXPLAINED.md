@@ -1,8 +1,8 @@
-# Polybot: how it works, end to end
+# PolyShadow: how it works, end to end
 
 ## 1. What it is, in one paragraph
 
-Polybot is a copy-trading system for prediction markets. It watches a hand-picked set of traders on polymarket.com
+PolyShadow is a copy-trading system for prediction markets. It watches a hand-picked set of traders on polymarket.com
 (the global site, which blocks US users), detects each bet they place, decides whether that bet is worth copying
 using rules derived from those traders' historical results, finds the identical market on Polymarket US (the
 CFTC-regulated exchange US residents can use), and buys it with real money on your account within tight price and

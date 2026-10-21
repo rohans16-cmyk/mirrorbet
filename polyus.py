@@ -222,7 +222,7 @@ def _signed(method, path, body=None):
     req = urllib.request.Request(f"{API}{path}", method=method,
                                  data=json.dumps(body).encode() if body is not None else None,
                                  headers={"X-PM-Access-Key": k["key_id"], "X-PM-Timestamp": ts, "X-PM-Signature": sig,
-                                          "Content-Type": "application/json", "User-Agent": "polybot"})
+                                          "Content-Type": "application/json", "User-Agent": "polyshadow"})
     try:
         with urllib.request.urlopen(req, timeout=20, context=sources.SSL) as r:
             raw = r.read()

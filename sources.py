@@ -19,6 +19,6 @@ SSL = _ssl_context()
 
 
 def _get(url, timeout=60):
-    req = urllib.request.Request(url, headers={"User-Agent": "polybot/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "polyshadow/1.0"})
     with urllib.request.urlopen(req, timeout=timeout, context=SSL) as r:
         return r.read(), dict(r.headers)

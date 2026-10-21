@@ -1,6 +1,6 @@
-# Polybot
+# PolyShadow
 
-A copy-trading bot for prediction markets. Polybot watches selected traders on [polymarket.com](https://polymarket.com),
+A copy-trading bot for prediction markets. PolyShadow watches selected traders on [polymarket.com](https://polymarket.com),
 detects each bet they place, decides whether it's worth copying using rules derived from their historical results, and
 places the same bet with real money on [Polymarket US](https://polymarket.us), within strict price and size limits.
 Paper-trading simulations run alongside it, so strategies can be compared without risking money.
@@ -8,7 +8,7 @@ Paper-trading simulations run alongside it, so strategies can be compared withou
 Everything runs locally on your own computer; nothing is sent anywhere except to Polymarket (and your phone, if you set
 up alerts).
 
-> Full technical walkthrough: [POLYBOT_EXPLAINED.md](POLYBOT_EXPLAINED.md)
+> Full technical walkthrough: [POLYSHADOW_EXPLAINED.md](POLYSHADOW_EXPLAINED.md)
 
 ## Features
 
@@ -71,8 +71,8 @@ data/             your local data (not in git)
 Requires Python 3.10+.
 
 ```bash
-git clone https://github.com/rohans16-cmyk/polybot.git
-cd polybot
+git clone https://github.com/rohans16-cmyk/polyshadow.git
+cd polyshadow
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python server.py
@@ -95,13 +95,13 @@ The real-money bot is off until you turn it on.
 ### Running it in the background (macOS)
 
 The bot only works while the server is running and the computer is awake. To run it as a LaunchAgent that starts at
-login, restarts if it stops, and prevents idle sleep, create `~/Library/LaunchAgents/com.<you>.polybot.plist` running
+login, restarts if it stops, and prevents idle sleep, create `~/Library/LaunchAgents/com.<you>.polyshadow.plist` running
 `/usr/bin/caffeinate -i <path>/.venv/bin/python -u server.py` with `WorkingDirectory` set to the project, `RunAtLoad`
 and `KeepAlive` true, then:
 
 ```bash
-launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.<you>.polybot.plist   # start
-launchctl bootout gui/$(id -u)/com.<you>.polybot                                  # stop
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.<you>.polyshadow.plist   # start
+launchctl bootout gui/$(id -u)/com.<you>.polyshadow                                  # stop
 ```
 
 ### Changing the frontend

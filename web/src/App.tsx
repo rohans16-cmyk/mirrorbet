@@ -39,7 +39,7 @@ export default function App() {
       <header className="sticky top-0 z-20 border-b border-white/[0.06] bg-surface-0/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3">
           <Logo />
-          <span className="text-base font-semibold tracking-tight">Polybot</span>
+          <span className="text-base font-semibold tracking-tight">PolyShadow</span>
           <span className="hidden text-xs text-zinc-500 sm:inline">copy the Polymarket traders you follow</span>
           <span className="ml-auto flex items-center gap-2">
             <StatusPill bot={bot} />

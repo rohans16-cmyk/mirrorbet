@@ -217,7 +217,7 @@ function Flow({ bot }: { bot: Bot }) {
         <line x1="-11" y1="-2" x2="11" y2="-2" stroke={live ? '#6ee7b7' : '#71717a'} strokeWidth="2" />
       </g>
       <text x="52" y="222" textAnchor="middle" fontSize="10.5" fill="#71717a">Traders you follow</text>
-      <text x="220" y="176" textAnchor="middle" fontSize="10.5" fill="#a1a1aa" fontWeight="600">Polybot</text>
+      <text x="220" y="176" textAnchor="middle" fontSize="10.5" fill="#a1a1aa" fontWeight="600">PolyShadow</text>
       <text x="374" y="152" textAnchor="middle" fontSize="10.5" fill="#71717a">Your account</text>
     </svg>
   )
@@ -383,7 +383,7 @@ export function GetStarted({ bot, open, setOpen }: { bot: Bot; open: boolean; se
               <p className="max-w-md text-sm leading-relaxed text-zinc-400">
                 {bot.ready
                   ? `The bot is ${bot.mode === 'auto' ? 'copying on its own' : 'asking you before each copy'}. Everything below can be changed any time.`
-                  : 'Polybot watches the Polymarket traders you follow and copies their bigger bets onto your Polymarket US account, with your limits. Nothing is spent until you turn it on.'}
+                  : 'PolyShadow watches the Polymarket traders you follow and copies their bigger bets onto your Polymarket US account, with your limits. Nothing is spent until you turn it on.'}
               </p>
               <div className="max-w-sm space-y-1.5">
                 <div className="flex justify-between text-xs text-zinc-500">

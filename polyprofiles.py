@@ -693,7 +693,7 @@ def live_prices(tokens):
     def batch(ts):
         try:
             req = urllib.request.Request(f"{CLOB}/books", data=json.dumps([{"token_id": t} for t in ts]).encode(),
-                                         headers={"User-Agent": "polybot", "Content-Type": "application/json"},
+                                         headers={"User-Agent": "polyshadow", "Content-Type": "application/json"},
                                          method="POST")
             with urllib.request.urlopen(req, timeout=10, context=sources.SSL) as r:
                 return json.loads(r.read())

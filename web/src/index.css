@@ -655,7 +655,7 @@ details[open] > :not(summary) { animation: page-in 0.24s cubic-bezier(0.2, 0.7, 
 .just-sold.is-loss { --glow: rgba(239, 68, 68, 0.55); }
 @media (prefers-reduced-motion: reduce) { .just-sold { animation: none; } }
 
-/* ---- Polybot: onboarding and header motion ----------------------------------------------------------------------- */
+/* ---- PolyShadow: onboarding and header motion ----------------------------------------------------------------------- */
 @keyframes pb-glow {
   0%, 100% { opacity: 0.55; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.06); }

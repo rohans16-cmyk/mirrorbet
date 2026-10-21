@@ -1,5 +1,5 @@
 #!/bin/bash
-# Polybot: double-click (Mac) or run ./start.command. First run sets up Python packages (a minute).
+# PolyShadow: double-click (Mac) or run ./start.command. First run sets up Python packages (a minute).
 cd "$(dirname "$0")"
 if ! command -v python3 >/dev/null; then echo "Python 3 isn't installed: get it from https://www.python.org/downloads/"; read -r; exit 1; fi
 if [ ! -d .venv ]; then

@@ -1,4 +1,4 @@
-"""Polybot: copy the Polymarket traders you follow, on paper and with real money on Polymarket US.
+"""PolyShadow: copy the Polymarket traders you follow, on paper and with real money on Polymarket US.
 
     python3 server.py        then open http://localhost:8100
 
@@ -106,7 +106,7 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/polymarket/phone":
                 import phonepush
                 if body.get("action") == "test":
-                    phonepush.send("Test from Polybot", "Phone alerts work. Big bets from the people you follow land here.",
+                    phonepush.send("Test from PolyShadow", "Phone alerts work. Big bets from the people you follow land here.",
                                    tags=["white_check_mark"], wait=True)
                     return self._send(200, phonepush.view())
                 if body.get("action") == "tg_token":  # your Telegram bot's token, from @BotFather
@@ -180,7 +180,7 @@ def main():
     polyprofiles.start()  # the people you follow: a live alert when one bets
     copysim.start()  # paper sims: settle every 10 minutes
     polyus.start()  # the real-money bot: settles, expires unplaced tickets, auto-sells
-    print(f"Polybot is running: http://localhost:{config.PORT}  (Ctrl+C to stop)")
+    print(f"PolyShadow is running: http://localhost:{config.PORT}  (Ctrl+C to stop)")
     server = ThreadingHTTPServer(("127.0.0.1", config.PORT), Handler)
     server.daemon_threads = True
     server.serve_forever()
