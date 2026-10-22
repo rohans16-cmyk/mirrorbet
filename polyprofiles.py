@@ -906,7 +906,7 @@ def _flush(force=False):
                               f"${b['usd']:,.0f} · {b['title']}", {"link": "p.poly"})
         others = [names[w]["name"] for w, bets in _held.items()
                   if w != b["wallet"] and w in names and (bets.get(b["asset"]) or {}).get("status") == "open"]
-        if b["side"] == "BUY" and others:
+        if b["side"] == "BUY" and others and p.get("alerts", True):
             sportsalerts.post("poly_best", f"Best bet: {' + '.join([p['name']] + others)} on {pick_label(b['title'], b['outcome'])}",
                               f"{b['title']} · now {round(price * 100)}¢", {"link": "p.poly"})
         try:  # a big one goes to the phone too (ntfy), one push per bet with the Best-bet news folded in
