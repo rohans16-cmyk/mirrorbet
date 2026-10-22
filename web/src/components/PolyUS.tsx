@@ -28,6 +28,7 @@ type Ticket = {
   fee?: number;
   slug?: string;
   long?: boolean;
+  us_yes?: string;
   order_id?: string;
   placed_at?: string;
   test?: boolean;
@@ -83,6 +84,19 @@ const usd = (x: number, sign = false) =>
   `${x < 0 ? "−" : sign && x > 0 ? "+" : ""}$${Math.abs(x).toFixed(2)}`;
 const cents = (p: number | null | undefined) =>
   p == null ? "–" : `${Math.round(p * 100)}¢`;
+/** The side bought on Polymarket US: "NO · James Madison −10.5" (NO on that line is the other team's cover). */
+function UsSide({ t }: { t: Ticket }) {
+  if (t.long == null || !t.us_yes) return null;
+  return (
+    <span
+      title={`Bought ${t.long ? "YES" : "NO"} on "${t.us_yes}" on Polymarket US`}
+      className={`max-w-[55%] truncate rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold ${t.long ? "bg-emerald-500/10 text-emerald-300" : "bg-rose-500/10 text-rose-300"}`}
+    >
+      {t.long ? "YES" : "NO"} · {t.us_yes}
+    </span>
+  );
+}
+
 const post = (body: object) =>
   fetch("/api/polymarket/us", {
     method: "POST",
@@ -739,7 +753,10 @@ function BetsTable({
                   <tr key={t.id} className="align-top hover:bg-white/[0.03]">
                     <td className="whitespace-nowrap px-3 py-2 text-zinc-400">{when(t.placed_at ?? t.at)}</td>
                     <td className="px-3 py-2">
-                      <p className="font-medium text-white">{pickLabel(t.title, t.outcome)}</p>
+                      <p className="flex items-center gap-2 font-medium text-white">
+                        {pickLabel(t.title, t.outcome)}
+                        <UsSide t={t} />
+                      </p>
                       <p className="text-xs text-zinc-500">{t.title}</p>
                     </td>
                     <td className="px-3 py-2 text-zinc-300">
@@ -838,6 +855,7 @@ function BetRow({
         <div className="min-w-0 flex-1">
           <p className="flex items-center gap-2 text-sm text-white">
             <span className="truncate font-medium">{pick}</span>
+            <UsSide t={t} />
             <span
               className={`shrink-0 rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold ${badge}`}
             >
@@ -904,6 +922,15 @@ function BetRow({
             Copying · <span className="text-zinc-200">{t.who ?? "–"}</span>
             {t.add ? " (they added)" : ""}
           </span>
+          {t.long != null && t.us_yes && (
+            <span className="sm:col-span-2">
+              On Polymarket US ·{" "}
+              <span className="text-zinc-200">
+                {t.long ? "YES" : "NO"} on “{t.us_yes}”
+                {t.long ? "" : ` (the same as ${pick})`}
+              </span>
+            </span>
+          )}
           <span>
             Their bet ·{" "}
             <span className="text-zinc-200">

@@ -1116,6 +1116,34 @@ def _advice(t, sell_px):
     return {"verdict": verdict, "why": why, "lines": lines}
 
 
+_yes_labels = {}  # US market slug -> what its YES side is
+
+
+def _us_yes(slug):
+    """What YES means on a US market: "James Madison −10.5", "Over 67.5", "Arsenal FC to win", "Draw"."""
+    if slug in _yes_labels:
+        return _yes_labels[slug]
+    m = _pub(f"/v1/market/slug/{slug}")
+    m = m.get("market", m)
+    ty = m.get("sportsMarketType") or ""
+    sd = next((x for x in m.get("marketSides") or [] if x.get("long")), {})
+    team = (sd.get("team") or {}).get("name") or ""
+    desc = sd.get("description") or ""
+    if ty.endswith("spread") and team:
+        n = float(desc)
+        out = f"{team} {'−' if n < 0 else '+'}{abs(n):g}"
+    elif ty.endswith("total") and m.get("line") is not None:
+        out = f"Over {float(m['line']):g}"
+    elif slug.endswith("-draw"):
+        out = "Draw"
+    elif team or desc not in ("", "Yes"):
+        out = f"{team or desc} to win"
+    else:
+        out = m.get("question") or slug
+    _yes_labels[slug] = out
+    return out
+
+
 _events_state = {}  # US event slug -> (time, still open?)
 
 
@@ -1162,6 +1190,12 @@ def summary():
                     t["advice"] = _advice(t, bid if t["long"] else 1 - ask)
             except Exception as e:
                 print(f"[polyus] advice: {e}")
+    for t in rows[-500:]:
+        if t.get("us") and t.get("long") is not None:
+            try:
+                t["us_yes"] = _us_yes(t["us"])
+            except Exception:
+                pass
     for t in rows[-500:]:  # the US game page for each (the event slug, cached in polyprofiles)
         if t.get("slug") and "us_event" not in t:
             try:
